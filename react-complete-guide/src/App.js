@@ -1,21 +1,45 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
+import React, { useState } from 'react';
+import Person from './Person/Person';
 import './App.css';
 
-class App extends Component {
-  render() {
+const app = props => {
+  //state is an inside component 
+  const [ personsState, setPersonsState] = useState({
+    persons: [
+      {name: 'Max', age: 29},
+      {name: 'Menu', age: 26}
+    ],
+    otherState: 'some other value'
+  });
+
+  console.log(personsState);
+  
+  const switchNameHandler = () => {
+    setPersonsState({
+      persons: [
+      {name: 'Max', age: 33},
+      {name: 'Menu', age: 26}
+    ]
+    });
+  };
+ 
+
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+        <h1>
+          Hi, I am React App!
+        </h1>
+        <p> This is actually work!</p>
+        <button onClick={switchNameHandler}> Switch Name</button>
+        <Person name = {personsState.persons[0].name} age = {personsState.persons[0].age} />
+        <Person name = "Max2" age = "28" > My Hobbies: Racing </Person>
+        <Person name = "Max3" age = "28" />
+
       </div>
     );
   }
-}
 
-export default App;
+export default app;
+
+
+
